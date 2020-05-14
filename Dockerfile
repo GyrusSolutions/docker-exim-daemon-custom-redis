@@ -22,9 +22,9 @@ RUN fakeroot debian/rules unpack-configs && \
 	patch EDITME.exim4-custom ../EDITME.patch && \
 	patch debian/control ../control.patch && \
 	fakeroot debian/rules pack-configs && \
-#	sh debian/create-custom-package custom && \
-	mk-build-deps debian/control && \
-	apt-get install -y ./exim4-build-deps_4.93-13ubuntu1_all.deb && \
+	mk-build-deps debian/control --install --tool='apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes' && \
+#	apt-get install -y ./exim4-build-deps-depends_4.93-13ubuntu1_all.deb && \
+#	apt-get install -y ./exim4-build-deps_4.93-13ubuntu1_all.deb && \
 	customdaemon=exim4-daemon-custom debuild -us -uc
 
 WORKDIR /
@@ -33,8 +33,8 @@ RUN apt-get install -y libhiredis0.14 libgnutls-dane0 exim4-config exim4-base &&
 	dpkg -i /build/exim4-daemon-custom_4.93-13ubuntu1_amd64.deb && \
 	rm -rf /build && \
 	apt-get install -y bsd-mailx && \
-	apt-get remove exim4-build-deps fakeroot devscripts pbuilder debhelper equivs && \
-	apt-get autoremove && \
+	apt-get purge --auto-remove -y exim4-build-deps exim4-build-deps-depends fakeroot devscripts pbuilder debhelper equivs && \
+	apt-get autoremove -y && \
 	apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     find /var/log -type f | while read f; do echo -ne '' > $f; done;	
