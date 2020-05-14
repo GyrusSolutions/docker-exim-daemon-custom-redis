@@ -1,0 +1,81 @@
+--- control.orig	2020-05-14 16:11:08.488585199 +0000
++++ control	2020-05-14 16:12:24.605876188 +0000
+@@ -26,6 +26,7 @@
+  libpcre3-dev,
+  libperl-dev,
+  libpq-dev,
++ libhiredis-dev,
+  libsasl2-dev,
+  libsqlite3-dev,
+  libx11-dev,
+@@ -244,38 +245,38 @@
+  can find the subscription web page on
+  http://lists.alioth.debian.org/mailman/listinfo/pkg-exim4-users
+ 
+-#Package: exim4-daemon-custom
+-#Architecture: any
+-#Priority: optional
+-#Provides: exim4-localscanapi-3.1, mail-transport-agent
+-#Conflicts: mail-transport-agent
+-#Replaces: exim4-base (<= 4.61-1), mail-transport-agent
+-#Depends:
+-# exim4-base (>= ${Upstream-Version}),
+-# ${misc:Depends},
+-# ${shlibs:Depends}
+-#Description: custom Exim MTA (v4) daemon with locally set features
+-# Exim (v4) is a mail transport agent. This package contains a
+-# custom-configured exim4 daemon compiled to local needs. This package
+-# is not part of official Debian, but can easily be built from the
+-# Debian source package. For information about the feature set compiled in,
+-# and for bug reports, please find out who built your package.
+-# .
+-# The Debian exim4 packages have their own web page,
+-# http://wiki.debian.org/PkgExim4. There is also a Debian-specific
+-# FAQ list. Information about the way the Debian packages are
+-# configured can be found in
+-# /usr/share/doc/exim4-base/README.Debian.gz, which additionally contains
+-# information about the way the Debian binary packages are built. The
+-# very extensive upstream documentation is shipped in
+-# /usr/share/doc/exim4-base/spec.txt.gz. To repeat the debconf-driven
+-# configuration process in a standard setup, invoke dpkg-reconfigure
+-# exim4-config. There is a Debian-centered mailing list,
+-# pkg-exim4-users@lists.alioth.debian.org. Please ask Debian-specific
+-# questions there, and only write to the upstream exim-users mailing
+-# list if you are sure that your question is not Debian-specific. You
+-# can find the subscription web page on
+-# http://lists.alioth.debian.org/mailman/listinfo/pkg-exim4-users
++Package: exim4-daemon-custom
++Architecture: any
++Priority: optional
++Provides: exim4-localscanapi-3.1, mail-transport-agent
++Conflicts: mail-transport-agent
++Replaces: exim4-base (<= 4.61-1), mail-transport-agent
++Depends:
++ exim4-base (>= ${Upstream-Version}),
++ ${misc:Depends},
++ ${shlibs:Depends}
++Description: custom Exim MTA (v4) daemon with locally set features
++ Exim (v4) is a mail transport agent. This package contains a
++ custom-configured exim4 daemon compiled to local needs. This package
++ is not part of official Debian, but can easily be built from the
++ Debian source package. For information about the feature set compiled in,
++ and for bug reports, please find out who built your package.
++ .
++ The Debian exim4 packages have their own web page,
++ http://wiki.debian.org/PkgExim4. There is also a Debian-specific
++ FAQ list. Information about the way the Debian packages are
++ configured can be found in
++ /usr/share/doc/exim4-base/README.Debian.gz, which additionally contains
++ information about the way the Debian binary packages are built. The
++ very extensive upstream documentation is shipped in
++ /usr/share/doc/exim4-base/spec.txt.gz. To repeat the debconf-driven
++ configuration process in a standard setup, invoke dpkg-reconfigure
++ exim4-config. There is a Debian-centered mailing list,
++ pkg-exim4-users@lists.alioth.debian.org. Please ask Debian-specific
++ questions there, and only write to the upstream exim-users mailing
++ list if you are sure that your question is not Debian-specific. You
++ can find the subscription web page on
++ http://lists.alioth.debian.org/mailman/listinfo/pkg-exim4-users
+ 
+ Package: eximon4
+ Architecture: any

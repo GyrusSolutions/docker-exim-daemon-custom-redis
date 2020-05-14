@@ -1,0 +1,112 @@
+--- EDITME.exim4-heavy	2020-05-13 17:39:19.703668840 +0000
++++ EDITME.exim4-custom	2020-05-13 17:39:19.703668840 +0000
+@@ -412,16 +412,16 @@
+ LOOKUP_DSEARCH=yes
+ # LOOKUP_IBASE=yes
+ # LOOKUP_JSON=yes
+-LOOKUP_LDAP=yes
+-LOOKUP_MYSQL=yes
++#LOOKUP_LDAP=yes
++#LOOKUP_MYSQL=yes
+ # LOOKUP_MYSQL_PC=mariadb
+-LOOKUP_NIS=yes
++#LOOKUP_NIS=yes
+ # LOOKUP_NISPLUS=yes
+ # LOOKUP_ORACLE=yes
+ LOOKUP_PASSWD=yes
+-LOOKUP_PGSQL=yes
+-# LOOKUP_REDIS=yes
+-LOOKUP_SQLITE=yes
++#LOOKUP_PGSQL=yes
++LOOKUP_REDIS=yes
++#LOOKUP_SQLITE=yes
+ # LOOKUP_SQLITE_PC=sqlite3
+ # LOOKUP_WHOSON=yes
+ 
+@@ -492,8 +492,8 @@
+ # LOOKUP_LIBS=-L/usr/local/lib -lldap -llber -lmysqlclient -lpq -lgds -lsqlite3
+ 
+ 
+-LOOKUP_INCLUDE=-I/usr/include/mysql -I`pg_config --includedir`
+-LOOKUP_LIBS=-lldap -llber -lmysqlclient -lpq -lsqlite3
++LOOKUP_INCLUDE=
++LOOKUP_LIBS=-llber -lhiredis
+ 
+ #------------------------------------------------------------------------------
+ # Compiling the Exim monitor: If you want to compile the Exim monitor, a
+@@ -760,8 +760,8 @@
+ # configuration to make use of the mechanism(s) selected.
+ 
+ AUTH_CRAM_MD5=yes
+-AUTH_CYRUS_SASL=yes
+-AUTH_DOVECOT=yes
++#AUTH_CYRUS_SASL=yes
++#AUTH_DOVECOT=yes
+ # AUTH_EXTERNAL=yes
+ # AUTH_GSASL=yes
+ # AUTH_GSASL_PC=libgsasl
+@@ -769,7 +769,7 @@
+ # AUTH_HEIMDAL_GSSAPI_PC=heimdal-gssapi
+ # AUTH_HEIMDAL_GSSAPI_PC=heimdal-gssapi heimdal-krb5
+ AUTH_PLAINTEXT=yes
+-AUTH_SPA=yes
++#AUTH_SPA=yes
+ AUTH_TLS=yes
+ 
+ # Heimdal through 1.5 required pkg-config 'heimdal-gssapi'; Heimdal 7.1
+@@ -783,7 +783,7 @@
+ # Similarly for GNU SASL, unless pkg-config is used via AUTH_GSASL_PC.
+ # Ditto for AUTH_HEIMDAL_GSSAPI(_PC).
+ 
+-AUTH_LIBS=-lsasl2
++#AUTH_LIBS=-lsasl2
+ # AUTH_LIBS=-lgsasl
+ # AUTH_LIBS=-lgssapi -lheimntlm -lkrb5 -lhx509 -lcom_err -lhcrypto -lasn1 -lwind -lroken -lcrypt
+ 
+@@ -992,7 +992,7 @@
+ # (version 5.004 or later) installed, set EXIM_PERL to perl.o. Using embedded
+ # Perl costs quite a lot of resources. Only do this if you really need it.
+ 
+-EXIM_PERL=perl.o
++#EXIM_PERL=perl.o
+ 
+ 
+ #------------------------------------------------------------------------------
+@@ -1002,7 +1002,7 @@
+ # that the local_scan API is made available by the linker. You may also need
+ # to add -ldl to EXTRALIBS so that dlopen() is available to Exim.
+ 
+-EXPAND_DLFUNC=yes
++#EXPAND_DLFUNC=yes
+ 
+ 
+ #------------------------------------------------------------------------------
+@@ -1012,11 +1012,11 @@
+ # support, which is intended for use in conjunction with the SMTP AUTH
+ # facilities, is included only when requested by the following setting:
+ 
+-SUPPORT_PAM=yes
++#SUPPORT_PAM=yes
+ 
+ # You probably need to add -lpam to EXTRALIBS, and in some releases of
+ # GNU/Linux -ldl is also needed.
+-EXTRALIBS=-lpam -export-dynamic
++EXTRALIBS=-ldl -export-dynamic
+ 
+ 
+ #------------------------------------------------------------------------------
+@@ -1025,12 +1025,12 @@
+ # If you may want to use outbound (client-side) proxying, using Socks5,
+ # uncomment the line below.
+ 
+-SUPPORT_SOCKS=yes
++#SUPPORT_SOCKS=yes
+ 
+ # If you may want to use inbound (server-side) proxying, using Proxy Protocol,
+ # uncomment the line below.
+ 
+-SUPPORT_PROXY=yes
++#SUPPORT_PROXY=yes
+ 
+ 
+ #------------------------------------------------------------------------------
