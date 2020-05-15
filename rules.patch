@@ -1,0 +1,11 @@
+--- rules.orig	2020-05-15 04:28:43.542908685 +0000
++++ rules	2020-05-15 04:29:22.599437755 +0000
+@@ -47,7 +47,7 @@
+ # If you want to create multiple custom packages with different names, use
+ # the script debian/create-custom-package [suffix].
+ 
+-# customdaemon = exim4-daemon-custom
++customdaemon = exim4-daemon-custom
+ daemons = exim4-daemon-light exim4-daemon-heavy $(customdaemon)
+ 
+ # If you want to build with OpenSSL instead of GnuTLS, uncomment this

@@ -9,7 +9,7 @@ RUN cp /etc/apt/sources.list /etc/apt/sources.list~ && \
 	apt-get install -y fakeroot devscripts pbuilder debhelper equivs && \
 	mkdir /build
 
-COPY EDITME.patch control.patch ./build/
+COPY EDITME.patch control.patch rules.patch ./build/
 
 WORKDIR /build
 
@@ -21,10 +21,11 @@ RUN fakeroot debian/rules unpack-configs && \
 	cp EDITME.exim4-heavy EDITME.exim4-custom && \
 	patch EDITME.exim4-custom ../EDITME.patch && \
 	patch debian/control ../control.patch && \
+	patch debian/rules ../rules.patch && \
 	fakeroot debian/rules pack-configs && \
 	apt-get build-dep -y exim4 && \
 	apt-get install -y libhiredis-dev && \
-	customdaemon=exim4-daemon-custom debuild -us -uc
+	debuild -us -uc
 
 FROM ubuntu:focal AS prod-env
 COPY --from=build-env /build/exim4-daemon-custom_4.93-13ubuntu1_amd64.deb /dist/
